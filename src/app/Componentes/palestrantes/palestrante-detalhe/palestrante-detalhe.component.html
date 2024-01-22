@@ -1,0 +1,12 @@
+<form [formGroup]=form>
+  <div class="form-group">
+    <h3 class="border-bottom">Palestrante</h3>
+    <label for="miniCurriculo">Minicurrículo</label>
+    <textarea type="text" id="miniCurriculo" formControlName="miniCurriculo" class="form-control"
+    ></textarea>
+    <small class="form-text" [ngClass]="corDescricao">
+      {{situacaoForm}}
+    </small>
+  </div>
+</form>
+

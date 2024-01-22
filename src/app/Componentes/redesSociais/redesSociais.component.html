@@ -1,0 +1,98 @@
+<div class="card rounded shadow-sm mt-4">
+  <!-- <P>form value {{ redesSociais.value | json }}</P>
+  <P>form value {{ redesSociais.status }}</P> -->
+  <div class="p-3">
+    <p>Clique em Rede Social para adicionar e preencher uma nova Rede Social</p>
+    <div class="form-row p-1">
+      <div [formGroup]="formRedeSocial" class="col">
+        <div
+          formArrayName="redesSociais"
+          *ngFor="let redeSocial of redesSociais.controls; let i = index"
+        >
+          <fieldset [formGroupName]="i" class="form-group mt-3">
+            <legend class="d-flex justify-content-between capitalize">
+              {{ retornaTitulo(redeSocial) }}
+              <button
+                (click)="removerRedeSocial(template, i)"
+                class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex"
+                tooltip="Excluir Rede Social"
+                [adaptivePosition]="false"
+                [delay]="500"
+                placement="left"
+              >
+                <i class="fa fa-window-close my-1 me-1"></i>
+                <b class="ml-1 d-none d-sm-block">Excluir</b>
+              </button>
+            </legend>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label>Nome</label>
+                <select class="form-control" title="Nome" [ngClass]="cssValidator(redesSociais.get(i + '.nome'))" formControlName="nome">
+                  <option value="Selecione">Selecione</option>
+                  <option value="Youtube">Youtube</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Twitter">Twitter</option>
+                  <option value="Google">Google</option>
+                  <option value="Linkedin">Linkedin</option>
+                  <option value="Pinterest">Pinterest</option>
+                  <option value="Watsapp">Watsapp</option>
+                  <option value="Telegram">Telegram</option>
+                  <option value="Skype">Skype</option>
+                  <option value="Vimeo">Vimeo</option>
+                </select>
+              </div>
+              <div class="form-group col-md-8">
+                <label>Link</label>
+                <input
+                  [ngClass]="cssValidator(formRedeSocial.get(i + '.url'))"
+                  type="text"
+                  prefix = "http://"
+                  class="form-control"
+                  formControlName="url"
+                  placeholder="URL"
+                />
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <button
+      (click)="adicionarRedeSocial()"
+      class="d-flex btn btn-outline-primary"
+    >
+      <i class="fa fa-plus-circle my-1"></i>
+      <b class="ml-1">Rede Social</b>
+    </button>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex">
+      <button class="btn btn-outline-secondary mr-auto border">
+        Cancelar Alteração
+      </button>
+      <button
+        [disabled]="redesSociais.status !== 'VALID'"
+        (click)="SalvarRedeSocial()"
+        class="btn btn-success"
+      >
+        Salvar Rede Social
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja excluir o lote {{ redeSocialAtual.nome }}?</p>
+    <button type="button" class="btn btn-danger" (click)="confirmDeleteRedeSocial()">
+      Sim</button
+    >&nbsp;
+    <button type="button" class="btn btn-primary" (click)="declineDeleteRedeSocial()">
+      Não
+    </button>
+  </div>
+</ng-template>
+
+

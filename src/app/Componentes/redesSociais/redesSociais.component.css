@@ -1,0 +1,8 @@
+.card-footer{
+  margin: 2rem -2rem - 2rem;
+}
+
+.capitalize{
+  text-transform: capitalize;
+  border-bottom: 1px solid silver;
+}

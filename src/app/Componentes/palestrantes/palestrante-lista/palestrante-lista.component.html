@@ -1,0 +1,55 @@
+<div class="card rounded shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="d-flex row">
+    <div class="d-flex my-2">
+      <div class="input-group flex-fill me-4">
+        <span class="input-group-text" id="basic-addon1">Filtro:</span>
+        <input
+          (input)="filterPalestrantes($event.target)"
+          type="text"
+          class="form-control"
+          placeholder="Filtrar por nome e minicurrículo"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+    </div>
+  </div>
+  <div *ngIf="palestrantes && palestrantes.length" class="row mp-2">
+   <div class="col-md-4 md-4 d-flex align-items-stretch" *ngFor="let palestrante of palestrantes">
+
+
+    <div class="card">
+      <div class="d-flex align-self-center pt-3">
+              <img
+                [src]="carregaImageUrl(palestrante.user.imageUrl)"
+                title="foto"
+                width="120"
+                height="120"
+                class="rounded-circle">
+      </div>
+      <div class="card-body">
+          <div class="h4 text-center mb-3">@{{palestrante.user.userName}}</div>
+          <div class="h7 text-bold pb-1"><b>Nome:</b> {{ palestrante.user.firstName + ' ' + palestrante.user.lastName }}</div>
+          <div class="h7">
+              {{palestrante.miniCurriculo}}
+          </div>
+      </div>
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+              <div class="row">
+                  <div class="col-6 text-center border-right">
+                      <div class="h5">0</div>
+                      <div class="h8 text-muted">Meus Eventos</div>
+                  </div>
+                  <div class="col-6 text-center">
+                      <div class="h5">0</div>
+                      <div class="h8 text-muted">Eventos Como {{palestrante.user.funcao === 'Palestrante' ? 'Palestrante' : 'Participante'}}</div>
+                  </div>
+              </div>
+          </li>
+      </ul>
+  </div>
+
+  </div>
+  </div>
+</div>
